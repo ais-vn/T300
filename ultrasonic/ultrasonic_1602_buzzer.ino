@@ -16,6 +16,7 @@ hd44780_I2Cexp lcd; // declare lcd object: auto locate & config display for hd44
 
 void setup()
 {
+  pinMode(PIN_BUZZER, OUTPUT);
   lcd.begin(16, 2);
   lcd.setCursor(0,0);  
   lcd.print("T300 ultrasonic");
@@ -32,5 +33,9 @@ void distance() {
 void loop()
 {
   distance();
-  delay(10);   // waits 100 milliseconds between pings. 29 milliseconds is the shortest delay between 2 pings
+  digitalWrite(PIN_BUZZER, HIGH);
+  delay(20);
+  digitalWrite(PIN_BUZZER, LOW);
+  delay(DistanceCm * 10);
+  // delay(100);   // waits 100 milliseconds between pings. 29 milliseconds is the shortest delay between 2 pings
 }
